@@ -129,11 +129,8 @@ function serverHandler(request, response) {
             if (filename.search(/demos/g) === -1 && filename.search(/admin/g) === -1 && stats.isDirectory() && config.homePage === '/demos/index.html') {
                 if (response.redirect) {
                     response.redirect('/demos/');
-                } else {
-                    response.writeHead(301, {
-                        'Location': '/demos/'
-                    });
                 }
+                
                 response.end();
                 return;
             }
@@ -148,10 +145,6 @@ function serverHandler(request, response) {
 
         try {
             if (fs.statSync(filename).isDirectory()) {
-                response.writeHead(404, {
-                    'Content-Type': 'text/html'
-                });
-
                 if (filename.indexOf(resolveURL('/demos/MultiRTC/')) !== -1) {
                     filename = filename.replace(resolveURL('/demos/MultiRTC/'), '');
                     filename += resolveURL('/demos/MultiRTC/index.html');
