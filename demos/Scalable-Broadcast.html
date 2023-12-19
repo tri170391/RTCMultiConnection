@@ -38,14 +38,11 @@
         connection.enableScalableBroadcast = true;
 
         // each relaying-user should serve only 1 users
-        connection.maxRelayLimitPerUser = 2;
+        connection.maxRelayLimitPerUser = 1;
 
         // we don't need to keep room-opened
         // scalable-broadcast.js will handle stuff itself.
         connection.autoCloseEntireSession = true;
-
-        // by default, socket.io server is assumed to be deployed on your own URL
-        connection.socketURL = '/';
 
         // comment-out below line if you do not have your own socket.io server
         connection.socketURL = 'https://muazkhan.com:9001/';
