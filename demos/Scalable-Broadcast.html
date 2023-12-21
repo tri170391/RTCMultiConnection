@@ -15,16 +15,19 @@
             <video id="video-preview" controls loop></video>
     </section>
 
-    <script src="RTCMultiConnection.min.js"></script>
+    <script src="RTCMultiConnection.js"></script>
     <script src="adapter.js"></script>
     <script src="socket.io.js"></script>
     <!-- <script src="https://www.webrtc-experiment.com/RecordRTC.js"></script> -->
     <script>
         // recording is disabled because it is resulting for browser-crash
-        // if you enable below line, please also uncomment above "RecordRTC.js"
+        // if you enable below line, please also uncomment above "RecordcRTC.js"
         var enableRecordings = false;
 
-        var connection = new RTCMultiConnection();
+        var connection = new RTCMultiConnection("rsb-test-room");
+
+        connection.socketMessageEvent = 'rsb-message';
+        connection.socketCustomEvent = 'rsb-custom-message';
 
         // https://www.rtcmulticonnection.org/docs/iceServers/
         // use your own TURN-server here!
@@ -46,8 +49,6 @@
 
         // comment-out below line if you do not have your own socket.io server
         connection.socketURL = 'https://muazkhan.com:9001/';
-
-        connection.socketMessageEvent = 'scalable-media-broadcast-demo';
 
         // document.getElementById('broadcast-id').value = connection.userid;
 
